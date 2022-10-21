@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  node-server:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:8080
+      - 9229:9229
+    command: npm run dev
