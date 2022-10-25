@@ -3,7 +3,7 @@ const Enum = require("../models/enum");
 
 const getEnums = (req, res, next) => {
   const enumType = req.params.enumType;
-  const queryData = enumType ? { type: enumType } : {}
+  const queryData = enumType ? { type: enumType } : {};
   Enum.find(queryData, { name: 1, type: 1 })
     .then((enums) => {
       res.status(200).json({
@@ -14,12 +14,11 @@ const getEnums = (req, res, next) => {
 };
 
 const postEnum = (req, res, next) => {
-  const type = req.body.type;
-  const name = req.body.name;
-
-  const newEnum = new Enum({ type, name });
+  const { type, name } = req.body;
 
   checkValidationError(req, "Validation failed, entered data are incorrect.");
+
+  const newEnum = new Enum({ type, name });
 
   newEnum
     .save()

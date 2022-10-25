@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const enumRoutes = require("./routes/enum");
+const exerciseRoutes = require("./routes/exercise");
 
 // Constants
 const PORT = 8080;
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use(enumRoutes);
+app.use(exerciseRoutes);
 
 app.use((error, req, res, next) => {
   console.error(error);
