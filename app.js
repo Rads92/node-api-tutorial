@@ -8,7 +8,7 @@ const enumRoutes = require("./routes/enum");
 const exerciseRoutes = require("./routes/exercise");
 
 // Constants
-const PORT = 8080;
+const PORT = 3000;
 
 // App
 const app = express();
