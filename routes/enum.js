@@ -12,4 +12,7 @@ router.post(
   enumController.postEnum
 );
 
+router.delete("/enum/:id", enumController.deleteEnum);
+router.patch("/enum/:id", enumController.patchEnum);
+
 module.exports = router;

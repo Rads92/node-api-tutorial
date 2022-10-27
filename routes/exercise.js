@@ -9,6 +9,7 @@ const router = express.Router();
 router.get("/exercises", exerciseController.getExercises);
 router.get("/exercise/:id", exerciseController.getExercise);
 router.patch("/exercise/:id", exerciseController.patchExercise);
+router.delete("/exercise/:id", exerciseController.deleteExercise);
 router.post(
   "/exercise",
   body("name").isString(),

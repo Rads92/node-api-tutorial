@@ -31,14 +31,31 @@ const getExercise = (req, res, next) => {
     });
 };
 
+const deleteExercise = (req, res, next) => {
+  const id = req.params.id;
+
+  Exercise.findByIdAndDelete(id)
+    .then((result) => {
+      if (!result) {
+        throw new Error();
+      }
+      res
+        .status(200)
+        .json({ message: "Successfully deleted", deleted: result });
+    })
+    .catch(() => {
+      const error = new Error(`Exercise with "${id}" was not found.`);
+      next(error);
+    });
+};
+
 const patchExercise = (req, res, next) => {
   const id = req.params.id;
   const { name, description, bodyPart, public } = req.body;
 
-  Exercise.updateOne(
-    { _id: id },
-    { $set: { name, description, bodyPart, public } }
-  )
+  Exercise.findByIdAndUpdate(id, {
+    $set: { name, description, bodyPart, public },
+  })
     .then(() => {
       res.status(204).json();
     })
@@ -72,4 +89,5 @@ module.exports = {
   getExercise,
   postExercise,
   patchExercise,
+  deleteExercise,
 };
