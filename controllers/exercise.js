@@ -8,7 +8,7 @@ const getExercises = (req, res, next) => {
         data: exercises,
       });
     })
-    .catch((err) => next(err));
+    .catch((error) => next(error));
 };
 
 const getExercise = (req, res, next) => {
@@ -21,32 +21,27 @@ const getExercise = (req, res, next) => {
     public: 1,
   })
     .then((exercise) => {
+      if (!exercise) {
+        throw new Error(`Exercise with "${id}" was not found.`);
+      }
       res.status(200).json({
         ...exercise._doc,
       });
     })
-    .catch(() => {
-      const error = new Error(`Exercise with "${id}" was not found.`);
-      next(error);
-    });
+    .catch((error) => next(error));
 };
 
 const deleteExercise = (req, res, next) => {
   const id = req.params.id;
 
   Exercise.findByIdAndDelete(id)
-    .then((result) => {
-      if (!result) {
-        throw new Error();
+    .then((exercise) => {
+      if (!exercise) {
+        throw new Error(`Exercise with "${id}" was not found.`);
       }
-      res
-        .status(200)
-        .json({ message: "Successfully deleted", data: result });
+      res.status(200).json({ message: "Successfully deleted", data: exercise });
     })
-    .catch(() => {
-      const error = new Error(`Exercise with "${id}" was not found.`);
-      next(error);
-    });
+    .catch((error) => next(error));
 };
 
 const patchExercise = (req, res, next) => {
@@ -59,10 +54,7 @@ const patchExercise = (req, res, next) => {
     .then(() => {
       res.status(204).json();
     })
-    .catch((e) => {
-      const error = new Error(`Exercise with "${id}" was not found.`);
-      next(error);
-    });
+    .catch((error) => next(error));
 };
 
 const postExercise = (req, res, next) => {

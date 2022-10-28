@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 
 const enumRoutes = require("./routes/enum");
 const exerciseRoutes = require("./routes/exercise");
+const workoutPlanRoutes = require("./routes/workoutPlan");
 
 // Constants
-const PORT = 3000;
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
 
 // App
 const app = express();
@@ -27,6 +29,7 @@ app.use((req, res, next) => {
 // routes
 app.use(enumRoutes);
 app.use(exerciseRoutes);
+app.use(workoutPlanRoutes);
 
 app.use((error, req, res, next) => {
   console.error(error);
@@ -39,5 +42,5 @@ mongoose
   .connect(
     `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.devaaou.mongodb.net/training-log?retryWrites=true`
   )
-  .then(() => app.listen(PORT))
+  .then(() => app.listen(PORT, HOST))
   .catch((err) => console.error(`Running DB failed: ${err}`));

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ENUMS_TYPES } = require("../constants/enumsTypes");
 const Schema = mongoose.Schema;
 
 const enumSchema = new Schema({
@@ -8,7 +9,7 @@ const enumSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ["BodyPart", "UserType"],
+    enum: ENUMS_TYPES,
     required: true,
   },
 });
