@@ -2,7 +2,7 @@ const express = require("express");
 const { body } = require("express-validator");
 
 const exerciseController = require("../controllers/exercise");
-const exerciseValidators = require("../validators/exercise");
+const enumValidators = require("../validators/enum");
 
 const router = express.Router();
 
@@ -13,7 +13,9 @@ router.delete("/exercise/:id", exerciseController.deleteExercise);
 router.post(
   "/exercise",
   body("name").isString(),
-  body("bodyPart").custom(exerciseValidators.validateBodyPart),
+  body("bodyPart").custom((enumName) =>
+    enumValidators.validateEnumByNameAndType(enumName, "BodyPart")
+  ),
   exerciseController.postExercise
 );
 

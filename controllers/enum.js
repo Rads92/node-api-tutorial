@@ -7,7 +7,7 @@ const getEnums = (req, res, next) => {
   Enum.find(queryData, { name: 1, type: 1 })
     .then((enums) => {
       res.status(200).json({
-        enums,
+        data: enums,
       });
     })
     .catch((err) => next(err));
@@ -25,7 +25,7 @@ const postEnum = (req, res, next) => {
     .then((result) => {
       res.status(201).json({
         message: "Enum created successfully",
-        enum: result,
+        data: result,
       });
     })
     .catch((err) => next(err));
@@ -54,7 +54,7 @@ const deleteEnum = (req, res, next) => {
       }
       res
         .status(200)
-        .json({ message: "Successfully deleted", deleted: result });
+        .json({ message: "Successfully deleted", data: result });
     })
     .catch(() => {
       const error = new Error(`Enum with "${id}" was not found.`);

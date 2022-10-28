@@ -5,7 +5,7 @@ const getExercises = (req, res, next) => {
   Exercise.find({})
     .then((exercises) => {
       res.status(200).json({
-        exercises,
+        data: exercises,
       });
     })
     .catch((err) => next(err));
@@ -41,7 +41,7 @@ const deleteExercise = (req, res, next) => {
       }
       res
         .status(200)
-        .json({ message: "Successfully deleted", deleted: result });
+        .json({ message: "Successfully deleted", data: result });
     })
     .catch(() => {
       const error = new Error(`Exercise with "${id}" was not found.`);
@@ -76,12 +76,15 @@ const postExercise = (req, res, next) => {
     public,
   });
 
-  newExercise.save().then((result) => {
-    res.status(201).json({
-      message: "Exercise created successfully",
-      enum: result,
-    });
-  });
+  newExercise
+    .save()
+    .then((result) => {
+      res.status(201).json({
+        message: "Exercise created successfully",
+        data: result,
+      });
+    })
+    .catch((err) => next(err));
 };
 
 module.exports = {

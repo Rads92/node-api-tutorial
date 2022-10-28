@@ -10,6 +10,17 @@ const validateEnumTypeAndName = (name, { req }) => {
   });
 };
 
+const validateEnumByNameAndType = (enumName, enumType) => {
+  return Enum.findOne({ name: enumName, type: enumType }).then((foundEnum) => {
+    if (!foundEnum) {
+      return Promise.reject(
+        `Enum with type: ${enumType} with name ${enumName} doesn't exist.`
+      );
+    }
+  });
+};
+
 module.exports = {
   validateEnumTypeAndName,
+  validateEnumByNameAndType,
 };
