@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "gym-app": "apps/gym-app",
+    "gym-app-e2e": "apps/gym-app-e2e",
+    "hooks": "libs/hooks",
+    "shared-components": "libs/shared-components"
+  }
+}
