@@ -1,11 +1,10 @@
-import { AppContainer, PageTitle } from "../components";
+import { AppContainer, Heading, Typography } from "@/components";
 
 export default function Home() {
   return (
     <AppContainer>
-      <PageTitle>Adsasd</PageTitle>
-      Simea
+      <Heading>Adsasd</Heading>
+      <Typography> Simea</Typography>
     </AppContainer>
   );
-  // return <h3>Simea</h3>;
 }

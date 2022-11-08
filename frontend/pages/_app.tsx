@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import { Roboto } from "@next/font/google";
-import "../styles/global.css";
+import "@/styles/global.css";
 
 const roboto = Roboto({
   weight: "400",

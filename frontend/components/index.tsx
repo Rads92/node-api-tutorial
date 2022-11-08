@@ -1,2 +1,3 @@
-export * from "./PageTitle";
 export * from "./containers";
+export * from "./Heading";
+export * from "./Typography";

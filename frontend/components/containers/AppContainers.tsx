@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MAX_CONTAINER_WIDTH, mq } from "../../styles/theme";
+import { MAX_CONTAINER_WIDTH, mq } from "@/styles";
 
 // This App container will be used to wrap all components which are main one
 export const AppContainer = styled.div`
