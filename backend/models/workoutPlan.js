@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { WORKOUT_TYPES } = require("../constants/workoutTypes");
 const Schema = mongoose.Schema;
 
 const workoutPlanSchema = new Schema({
@@ -9,7 +10,7 @@ const workoutPlanSchema = new Schema({
   type: {
     type: String,
     required: true,
-    enum: ["TRISET", "CIRCUIT", "SPLIT"],
+    enum: WORKOUT_TYPES,
   },
   coreExercises: [
     {
